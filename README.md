@@ -8,13 +8,14 @@
 ## 使用方法：
 1. 通用方法（三级缓存） HttpDownload+DoubleCatch机制
 ````java
-    ZLWImageLoader.init(context).loadImage(data[position], lv, holder.img);
+    ZLWImageLoader.init(context).loadImage(data[position], lv, holder.img); //防止listview图片错位的方法
+    ZLWImageLoader.init(context).loadImage(imageurl, ,imageview);  //加载普通Imageview使用
 ````
 2. 扩展方法
 *  自定义策略加载Listview中的图片
 ````java
     ImageLoader imageload = new ImageLoader(imageDownLoadImpl, imageCatchImpl);
-    imageload.loadImage(data[position], lv, holder.img);
+    imageload.loadImage(imageurl, lv, imageview);
 ````
 *   加载普通图片
     使用ImageHttpDownLoad

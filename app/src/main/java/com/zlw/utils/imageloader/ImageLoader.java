@@ -58,6 +58,30 @@ public class ImageLoader {
             }
         });
     }
+    public <T extends ImageView> void loadImage(String imageurl, final T view) {
+        Bitmap bitmap = null;
+        if (imageCache != null) {     //空指针检验
+            bitmap = imageCache.get(imageurl);
+        }
+        if (bitmap != null) {
+            view.setImageBitmap(bitmap);
+            return;
+        }
 
+
+        imageDownload.download(imageurl, new IImageDownload.ImageListener() {
+            @Override
+            public void onSuccess(String imageurl, Bitmap bitmap) {
+                if (imageCache != null)
+                    imageCache.put(imageurl, bitmap);
+                view.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                Log.e("imageloader", "图片加载错误：" + msg);
+            }
+        });
+    }
 
 }
