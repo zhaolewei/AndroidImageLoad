@@ -10,15 +10,36 @@
 ````java
     ZLWImageLoader.init(context).loadImage(data[position], lv, holder.img);
 ````
-2. 扩展方法   
+2. 扩展方法
+*  自定义策略加载Listview中的图片
 ````java
     ImageLoader imageload = new ImageLoader(imageDownLoadImpl, imageCatchImpl);
     imageload.loadImage(data[position], lv, holder.img);
 ````
-    imageDownLoadImpl 为 IImageDownload接口的实现类
-    接口实现类:   
->    IImageDownload.java
->>    ImageHttpDownLoad
+*   加载普通图片
+    使用ImageHttpDownLoad
+    
+````java
+    IImageDownload imageDownload = new ImageHttpDownLoad();
+    imageDownload.download(imageurl, new IImageDownload.ImageListener() {
+                @Override
+                public void onSuccess(String imageurl, Bitmap bitmap) {
+                //在此可加入缓存策略（IImageCache），此处略去
+                    if (bitmap != null)
+                       v.setImageBitmap(bitmap);
+                }
+    
+                @Override
+                public void onFailure(String msg) {
+                    Log.e("imageloader", "图片加载错误：" + msg);
+                }
+            });
+````    
+
+####   imageDownLoadImpl 为 IImageDownload接口的实现类
+   
+>    IImageDownload.java (接口)
+>>    ImageHttpDownLoad （实现类）
     
     imageCatchImpl为 IImageCatch接口的实现类
     接口实现类:   
