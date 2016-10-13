@@ -12,7 +12,7 @@ import com.zlw.utils.imageloader.imagedown.ImageHttpDownLoad;
 /**
  * Created by zlw on 2016/10/12 0012.
  */
-public class MyImageLoader {
+public class ZLWImageLoader {
 
     private static ImageLoader imageLoader; //单例模式
 

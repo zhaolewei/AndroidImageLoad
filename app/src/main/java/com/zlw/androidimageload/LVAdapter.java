@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.zlw.utils.imageloader.ImageLoader;
-import com.zlw.utils.imageloader.MyImageLoader;
+import com.zlw.utils.imageloader.ZLWImageLoader;
 import com.zlw.utils.imageloader.imagecache.DoubleCache;
 import com.zlw.utils.imageloader.imagedown.ImageHttpDownLoad;
 
@@ -62,7 +62,7 @@ public class LVAdapter extends BaseAdapter {
         }
 //        imageLoader.loadImage(data[position], lv, holder.img);
 
-        MyImageLoader.init(context).loadImage(data[position], lv, holder.img);
+        ZLWImageLoader.init(context).loadImage(data[position], lv, holder.img);
         return convertView;
 
     }
